@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー - History Auto Cleaner</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .legal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .legal-content h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .legal-content .updated {
+      color: #666;
+      margin-bottom: 40px;
+    }
+    .legal-content h2 {
+      font-size: 20px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+    }
+    .legal-content p, .legal-content li {
+      color: #555;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .legal-content ul {
+      padding-left: 24px;
+    }
+    .legal-content a {
+      color: #667eea;
+    }
+    .highlight-box {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      padding: 20px;
+      margin: 24px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .highlight-box strong {
+      color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="icon128.png" alt="History Auto Cleaner" width="48" height="48">
+        <span>History Auto Cleaner</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="legal-content">
+    <h1>プライバシーポリシー</h1>
+    <p class="updated">最終更新日: 2025年1月</p>
+
+    <div class="highlight-box">
+      <strong>プライバシー重視の設計</strong><br>
+      History Auto Cleanerは、ユーザーのプライバシーを最優先に設計されています。閲覧履歴や個人情報を外部に送信することは一切ありません。
+    </div>
+
+    <h2>1. 収集する情報</h2>
+    <p>History Auto Cleanerは、以下の情報をローカル（お使いのブラウザ内）にのみ保存します：</p>
+    <ul>
+      <li><strong>削除ルール:</strong> ユーザーが設定したドメイン、ワイルドカード、正規表現パターン</li>
+      <li><strong>統計情報:</strong> 削除した履歴の件数、最終削除日時</li>
+      <li><strong>設定情報:</strong> 拡張機能の有効/無効状態</li>
+      <li><strong>ライセンス情報:</strong> Pro版のライセンスキー（Pro版ユーザーのみ）</li>
+    </ul>
+    <p>これらの情報は、すべてお使いのブラウザの<code>chrome.storage.local</code>に保存され、外部サーバーには送信されません。</p>
+
+    <h2>2. 外部との通信</h2>
+    <p>History Auto Cleanerは、以下の場合にのみ外部と通信を行います：</p>
+    <ul>
+      <li><strong>ライセンス認証時（Pro版のみ）:</strong> ライセンスキーの有効性を確認するため、Paddle社のAPIと通信します。この際に送信される情報は、ライセンスキーのみです。</li>
+    </ul>
+    <p>閲覧履歴、削除ルール、その他の個人情報が外部に送信されることは一切ありません。</p>
+
+    <h2>3. 閲覧履歴へのアクセス</h2>
+    <p>本拡張機能は、<code>chrome.history</code> APIを使用して閲覧履歴にアクセスします。このアクセスは以下の目的にのみ使用されます：</p>
+    <ul>
+      <li>ユーザーが設定したルールに一致する履歴の削除</li>
+      <li>過去の履歴の一括削除（Pro版機能）</li>
+    </ul>
+    <p>閲覧履歴の内容を読み取って保存したり、外部に送信することはありません。</p>
+
+    <h2>4. タブ情報へのアクセス</h2>
+    <p>本拡張機能は、<code>chrome.tabs</code> APIを使用して現在のタブのURLを取得します。この情報は以下の目的にのみ使用されます：</p>
+    <ul>
+      <li>現在閲覧中のページがルールに一致するかの判定</li>
+      <li>ルール追加時の現在のドメイン取得</li>
+    </ul>
+
+    <h2>5. データの保存場所</h2>
+    <p>すべてのデータは、ユーザーのローカル環境（ブラウザ内）に保存されます：</p>
+    <ul>
+      <li>Chromeの<code>chrome.storage.local</code>を使用</li>
+      <li>クラウド同期（<code>chrome.storage.sync</code>）は使用しません</li>
+      <li>外部サーバーへのデータ保存は行いません</li>
+    </ul>
+
+    <h2>6. データの削除</h2>
+    <p>ユーザーは以下の方法でデータを削除できます：</p>
+    <ul>
+      <li><strong>拡張機能のアンインストール:</strong> すべてのデータが自動的に削除されます</li>
+      <li><strong>ブラウザのデータ削除:</strong> 「拡張機能のデータ」を選択して削除</li>
+    </ul>
+
+    <h2>7. 第三者への提供</h2>
+    <p>History Auto Cleanerは、ユーザーの情報を第三者に提供、販売、共有することはありません。</p>
+
+    <h2>8. Cookieの使用</h2>
+    <p>本拡張機能は、Cookieを使用しません。</p>
+
+    <h2>9. 子どものプライバシー</h2>
+    <p>本拡張機能は、13歳未満の子どもを対象としていません。13歳未満の方が本拡張機能を使用する場合は、保護者の監督のもとでご利用ください。</p>
+
+    <h2>10. プライバシーポリシーの変更</h2>
+    <p>本プライバシーポリシーは、必要に応じて変更されることがあります。重要な変更がある場合は、拡張機能のアップデート時にお知らせします。</p>
+
+    <h2>11. お問い合わせ</h2>
+    <p>プライバシーに関するご質問は、Chrome Web Storeのサポート機能を通じてご連絡ください。</p>
+
+    <h2>12. 使用するChrome API</h2>
+    <p>本拡張機能が使用するChrome APIと、その目的は以下の通りです：</p>
+    <ul>
+      <li><strong>chrome.history:</strong> 閲覧履歴の読み取りと削除</li>
+      <li><strong>chrome.tabs:</strong> 現在のタブURL取得</li>
+      <li><strong>chrome.storage.local:</strong> 設定とルールの保存</li>
+      <li><strong>chrome.webNavigation:</strong> SPAサイトのナビゲーション検出</li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="refund.html">返金ポリシー</a>
+      </div>
+      <p class="copyright">&copy; 2025 History Auto Cleaner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
