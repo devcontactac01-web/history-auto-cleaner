@@ -169,18 +169,24 @@
     </div>
   </footer>
 
-  <!-- Paddle.js -->
-  <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+  <!-- Paddle.js (Billing) -->
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   <script>
-    // Paddle初期化（本番環境のVendor IDを設定）
-    // Paddle.Setup({ vendor: YOUR_VENDOR_ID });
+    // Paddle Billing 初期化
+    Paddle.Initialize({
+      token: 'live_995cc2512948f0091b2191fd03e'
+    });
 
-    // Paddle Checkoutボタンのクリックイベント
+    // 購入ボタンのクリックイベント
     document.querySelectorAll('.paddle_button').forEach(button => {
       button.addEventListener('click', function(e) {
         e.preventDefault();
-        // Paddle.Checkout.open({ product: PADDLE_PRODUCT_ID });
-        alert('Paddle設定後に購入可能になります');
+        Paddle.Checkout.open({
+          items: [{
+            priceId: 'pri_01kb7wjefgx2mw7zb32be4fs5y',
+            quantity: 1
+          }]
+        });
       });
     });
   </script>
