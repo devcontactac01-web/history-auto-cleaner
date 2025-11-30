@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購入完了 - History Auto Cleaner Pro</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .success-container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+    }
+
+    .success-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+
+    .success-message {
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .license-box {
+      background: #f8f9fa;
+      border: 2px solid #4f46e5;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .license-label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .license-key {
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      word-break: break-all;
+      user-select: all;
+      cursor: pointer;
+    }
+
+    .copy-btn {
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #4338ca;
+    }
+
+    .copy-btn.copied {
+      background: #10b981;
+    }
+
+    .instructions {
+      text-align: left;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .instructions h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+
+    .instructions ol {
+      margin: 0;
+      padding-left: 20px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+    }
+
+    .back-link {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e0e0e0;
+      border-top-color: #4f46e5;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      margin-top: 16px;
+      color: #666;
+    }
+
+    .error-box {
+      background: #fef2f2;
+      border: 1px solid #ef4444;
+      border-radius: 12px;
+      padding: 24px;
+      color: #dc2626;
+      margin-bottom: 24px;
+    }
+
+    .error-box h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .retry-section {
+      margin-top: 24px;
+      padding: 24px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .retry-section p {
+      color: #666;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="icon128.png" alt="History Auto Cleaner" width="48" height="48">
+        <span>History Auto Cleaner</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="success-container">
+      <!-- Loading State -->
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p class="loading-text">ライセンス情報を取得しています...</p>
+      </div>
+
+      <!-- Success State -->
+      <div id="success" style="display: none;">
+        <div class="success-icon">🎉</div>
+        <h1 class="success-title">ご購入ありがとうございます！</h1>
+        <p class="success-message">History Auto Cleaner Pro のライセンスキーを発行しました。<br>下記のキーを拡張機能に入力してください。</p>
+
+        <div class="license-box">
+          <p class="license-label">ライセンスキー</p>
+          <div id="licenseKey" class="license-key">-</div>
+          <button id="copyBtn" class="copy-btn">コピーする</button>
+        </div>
+
+        <div class="instructions">
+          <h3>ライセンスキーの使用方法</h3>
+          <ol>
+            <li>Chrome拡張機能「History Auto Cleaner」のアイコンをクリック</li>
+            <li>右上の歯車アイコン（⚙）をクリックして設定画面を開く</li>
+            <li>「ライセンス」セクションでキーを入力</li>
+            <li>「認証」ボタンをクリック</li>
+          </ol>
+        </div>
+
+        <p class="success-message" style="font-size: 14px;">
+          ライセンスキーは <strong id="userEmail">-</strong> 宛にも送信されます。<br>
+          キーを紛失した場合は、<a href="index.html#resend" class="back-link">こちら</a>から再送できます。
+        </p>
+
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+      </div>
+
+      <!-- Error State -->
+      <div id="error" style="display: none;">
+        <div class="success-icon">⚠️</div>
+        <h1 class="success-title">ライセンスの取得に失敗しました</h1>
+
+        <div class="error-box">
+          <h3>エラー</h3>
+          <p id="errorMessage">ライセンス情報を取得できませんでした。</p>
+        </div>
+
+        <div class="retry-section">
+          <p>決済は正常に完了している可能性があります。<br>下記からメールアドレスを入力してライセンスキーを再送してください。</p>
+          <a href="index.html#resend" class="btn btn-primary">ライセンスキーを再送する</a>
+        </div>
+
+        <p style="margin-top: 24px;">
+          <a href="index.html" class="back-link">← トップページに戻る</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="terms.html">利用規約</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="refund.html">返金ポリシー</a>
+      </div>
+      <p class="copyright">&copy; 2025 History Auto Cleaner. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const API_BASE = 'https://history-auto-cleaner-license.devcontact-ac01.workers.dev';
+
+    // URLからtransaction_idを取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const transactionId = urlParams.get('_ptxn') || urlParams.get('transaction_id');
+
+    const loadingEl = document.getElementById('loading');
+    const successEl = document.getElementById('success');
+    const errorEl = document.getElementById('error');
+    const licenseKeyEl = document.getElementById('licenseKey');
+    const userEmailEl = document.getElementById('userEmail');
+    const errorMessageEl = document.getElementById('errorMessage');
+    const copyBtn = document.getElementById('copyBtn');
+
+    async function fetchLicense() {
+      if (!transactionId) {
+        showError('Transaction IDが見つかりません。');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/api/license-by-transaction`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ transaction_id: transactionId })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          showSuccess(data.license_key, data.email);
+        } else {
+          showError(data.error || 'ライセンスを取得できませんでした。');
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        showError('サーバーに接続できませんでした。しばらく待ってから再度お試しください。');
+      }
+    }
+
+    function showSuccess(licenseKey, email) {
+      loadingEl.style.display = 'none';
+      successEl.style.display = 'block';
+      errorEl.style.display = 'none';
+
+      licenseKeyEl.textContent = licenseKey;
+      userEmailEl.textContent = email || '(メールアドレス未登録)';
+    }
+
+    function showError(message) {
+      loadingEl.style.display = 'none';
+      successEl.style.display = 'none';
+      errorEl.style.display = 'block';
+
+      errorMessageEl.textContent = message;
+    }
+
+    // コピーボタン
+    copyBtn.addEventListener('click', async () => {
+      const licenseKey = licenseKeyEl.textContent;
+      try {
+        await navigator.clipboard.writeText(licenseKey);
+        copyBtn.textContent = 'コピーしました！';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = 'コピーする';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        // フォールバック
+        const textArea = document.createElement('textarea');
+        textArea.value = licenseKey;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        copyBtn.textContent = 'コピーしました！';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = 'コピーする';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }
+    });
+
+    // ライセンスキーをクリックでも選択
+    licenseKeyEl.addEventListener('click', () => {
+      const range = document.createRange();
+      range.selectNodeContents(licenseKeyEl);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    });
+
+    // 初期化
+    fetchLicense();
+  </script>
+</body>
+</html>
