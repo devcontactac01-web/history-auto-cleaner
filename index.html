@@ -124,21 +124,6 @@
       </div>
     </section>
 
-    <!-- License Resend Section -->
-    <section id="resend" class="resend">
-      <div class="container">
-        <h2>ライセンスキーの再発行</h2>
-        <p class="resend-description">購入時に使用したメールアドレスを入力してください。ライセンスキーをメールでお送りします。</p>
-        <form id="resendForm" class="resend-form">
-          <div class="form-group">
-            <input type="email" id="resendEmail" placeholder="メールアドレス" required>
-            <button type="submit" class="btn btn-primary" id="resendBtn">再発行</button>
-          </div>
-          <p id="resendMessage" class="resend-message"></p>
-        </form>
-      </div>
-    </section>
-
     <!-- FAQ Section -->
     <section id="faq" class="faq">
       <div class="container">
@@ -158,7 +143,7 @@
           </details>
           <details class="faq-item">
             <summary>ライセンスキーはどのように届きますか？</summary>
-            <p>購入完了後、画面にライセンスキーが表示されます。キーを紛失した場合は、<a href="#resend">こちら</a>から購入時のメールアドレスを入力して再発行できます。</p>
+            <p>購入完了後、画面にライセンスキーが表示されます。<strong>ライセンスキーは再発行できませんので、必ずメモを取るかスクリーンショットを保存してください。</strong></p>
           </details>
           <details class="faq-item">
             <summary>複数のPCで使えますか？</summary>
@@ -208,56 +193,6 @@
       });
     });
 
-    // ライセンスキー再発行フォーム
-    const API_BASE = 'https://history-auto-cleaner-license.devcontact-ac01.workers.dev';
-    const resendForm = document.getElementById('resendForm');
-    const resendEmail = document.getElementById('resendEmail');
-    const resendBtn = document.getElementById('resendBtn');
-    const resendMessage = document.getElementById('resendMessage');
-
-    resendForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email = resendEmail.value.trim();
-      if (!email) return;
-
-      resendBtn.disabled = true;
-      resendBtn.textContent = '送信中...';
-      resendMessage.textContent = '';
-      resendMessage.className = 'resend-message';
-
-      try {
-        const response = await fetch(`${API_BASE}/api/resend-license`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: email })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          resendMessage.textContent = 'ライセンスキーをメールで送信しました。受信トレイをご確認ください。';
-          resendMessage.className = 'resend-message success';
-          resendEmail.value = '';
-        } else {
-          resendMessage.textContent = data.error === 'No license found for this email'
-            ? 'このメールアドレスで登録されたライセンスが見つかりません。'
-            : data.error === 'Email service not configured'
-            ? 'メール送信サービスが設定されていません。管理者にお問い合わせください。'
-            : 'エラーが発生しました。しばらく待ってから再度お試しください。';
-          resendMessage.className = 'resend-message error';
-        }
-      } catch (err) {
-        console.error('Resend error:', err);
-        resendMessage.textContent = 'サーバーに接続できませんでした。しばらく待ってから再度お試しください。';
-        resendMessage.className = 'resend-message error';
-      } finally {
-        resendBtn.disabled = false;
-        resendBtn.textContent = '再発行';
-      }
-    });
   </script>
 </body>
 </html>
