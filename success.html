@@ -212,10 +212,13 @@
           </ol>
         </div>
 
-        <p class="success-message" style="font-size: 14px;">
-          ライセンスキーは <strong id="userEmail">-</strong> 宛にも送信されます。<br>
-          キーを紛失した場合は、<a href="index.html#resend" class="back-link">こちら</a>から再送できます。
-        </p>
+        <div class="instructions" style="background: #fef3c7; border-color: #f59e0b;">
+          <h3 style="color: #b45309;">⚠️ 重要：ライセンスキーを保存してください</h3>
+          <p style="color: #92400e; margin: 0;">
+            ライセンスキーは再発行できません。<br>
+            必ずメモを取るか、スクリーンショットを保存してください。
+          </p>
+        </div>
 
         <a href="index.html" class="back-link">← トップページに戻る</a>
       </div>
@@ -231,8 +234,11 @@
         </div>
 
         <div class="retry-section">
-          <p>決済は正常に完了している可能性があります。<br>下記からメールアドレスを入力してライセンスキーを再送してください。</p>
-          <a href="index.html#resend" class="btn btn-primary">ライセンスキーを再送する</a>
+          <p>決済は正常に完了している可能性があります。<br>しばらく待ってからページを再読み込みしてください。</p>
+          <button onclick="location.reload()" class="btn btn-primary">ページを再読み込み</button>
+          <p style="margin-top: 16px; font-size: 14px; color: #666;">
+            問題が解決しない場合は、Chrome Web Storeのサポートからお問い合わせください。
+          </p>
         </div>
 
         <p style="margin-top: 24px;">
@@ -264,7 +270,6 @@
     const successEl = document.getElementById('success');
     const errorEl = document.getElementById('error');
     const licenseKeyEl = document.getElementById('licenseKey');
-    const userEmailEl = document.getElementById('userEmail');
     const errorMessageEl = document.getElementById('errorMessage');
     const copyBtn = document.getElementById('copyBtn');
 
@@ -302,7 +307,6 @@
       errorEl.style.display = 'none';
 
       licenseKeyEl.textContent = licenseKey;
-      userEmailEl.textContent = email || '(メールアドレス未登録)';
     }
 
     function showError(message) {
