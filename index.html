@@ -115,8 +115,8 @@
               <li><strong>過去履歴の一括削除</strong></li>
               <li><strong>インポート/エクスポート</strong></li>
             </ul>
-            <!-- Paddle Checkout Button -->
-            <a href="#!" class="btn btn-primary paddle_button" data-product="PADDLE_PRODUCT_ID">
+            <!-- Lemon Squeezy Checkout Button -->
+            <a href="https://history-auto-cleaner.lemonsqueezy.com/buy/a/9256e4-b253-49ee-bd05-afec9566eb83" class="btn btn-primary lemonsqueezy-button">
               今すぐ購入
             </a>
           </div>
@@ -143,7 +143,7 @@
           </details>
           <details class="faq-item">
             <summary>ライセンスキーはどのように届きますか？</summary>
-            <p>購入完了後、画面にライセンスキーが表示されます。<strong>ライセンスキーは再発行できませんので、必ずメモを取るかスクリーンショットを保存してください。</strong></p>
+            <p>購入完了後、入力したメールアドレスに注文確認メールが届きます。メールにライセンスキーが記載されています。また、<a href="https://app.lemonsqueezy.com/my-orders" target="_blank">My Orders</a>ページからいつでも確認できます。</p>
           </details>
           <details class="faq-item">
             <summary>複数のPCで使えますか？</summary>
@@ -169,30 +169,7 @@
     </div>
   </footer>
 
-  <!-- Paddle.js (Billing) -->
-  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-  <script>
-    // Paddle Billing 初期化
-    Paddle.Initialize({
-      token: 'live_995cc2512948f0091b2191fd03e'
-    });
-
-    // 購入ボタンのクリックイベント
-    document.querySelectorAll('.paddle_button').forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        Paddle.Checkout.open({
-          items: [{
-            priceId: 'pri_01kb7wjefgx2mw7zb32be4fs5y',
-            quantity: 1
-          }],
-          settings: {
-            successUrl: 'https://devcontactac01-web.github.io/history-auto-cleaner/success.html?_ptxn={transaction_id}'
-          }
-        });
-      });
-    });
-
-  </script>
+  <!-- Lemon Squeezy Checkout (モーダル表示) -->
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 </body>
 </html>
